@@ -1,0 +1,101 @@
+*
+    padding: 0
+    margin: 0
+    box-sizing: border-box
+
+body 
+    padding-top: 50px
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-wrap: nowrap
+    flex-direction: column
+    background-color: #282A3B;
+
+.arm-player-wave
+    padding: 20px
+    background-color: #795548
+    width: 500px
+    position: relative
+    border-radius: 10px
+
+.parent-wave
+    padding-top: 20px
+    padding-bottom: 20px
+
+.waveform
+    width: 100%
+    height: 50px
+    background-color: #FFFFFF
+
+*
+    padding: 0
+    margin: 0
+    box-sizing: border-box
+
+.parent
+    background-color: #FFFFFF
+    display: flex
+    flex-direction: row
+    flex-wrap: nowrap
+    justify-content: center
+    align-items: center
+    .parent-dragable
+        width: 100%
+        max-width: 500px
+        height: max-content
+        .input-label 
+            padding: 7px
+            border: 1px dashed #11998E
+            display: block
+            width: 100%
+            text-align: center
+            font-size: 16px
+            font-weight: 900
+            transition: background-color 300ms linear
+            &.dragover
+                background-color: #77D4D4
+            .drag-title
+                font-size: 27px
+                font-weight: 700
+                color: #4BC08B
+                text-align: center
+                display: inline
+                padding: 0 7px
+        .input-file
+            display: none
+
+.selectionInfo
+    color: #FFFFFF
+    padding-bottom: 10px
+    text-align: center
+
+.btn-parent
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: row
+
+#cut
+    border: none
+    box-shadow: none
+    outline: none
+    color: #FFFFFF
+    cursor: pointer
+    background-color: #282a3b
+    border-radius: 5px
+    padding: 7px 18px
+    min-width: 75px
+    line-height: 1.7
+    font-weight: 700
+    transition: all 250ms linear
+    &:hover,
+    &:active,
+    &:focus
+        border: none
+        box-shadow: none
+        outline: none
+        background-color: #191b29
+    &:hover
+        background-color: #121420

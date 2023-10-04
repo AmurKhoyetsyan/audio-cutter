@@ -1,0 +1,161 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  padding-top: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #282A3B;
+}
+
+.arm-player-wave {
+  padding: 20px;
+  background-color: #795548;
+  width: 500px;
+  position: relative;
+  border-radius: 10px;
+}
+
+.parent-wave {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.waveform {
+  width: 100%;
+  height: 50px;
+  background-color: #FFFFFF;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.parent {
+  background-color: #FFFFFF;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.parent .parent-dragable {
+  width: 100%;
+  max-width: 500px;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+
+.parent .parent-dragable .input-label {
+  padding: 7px;
+  border: 1px dashed #11998E;
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 900;
+  -webkit-transition: background-color 300ms linear;
+  transition: background-color 300ms linear;
+}
+
+.parent .parent-dragable .input-label.dragover {
+  background-color: #77D4D4;
+}
+
+.parent .parent-dragable .input-label .drag-title {
+  font-size: 27px;
+  font-weight: 700;
+  color: #4BC08B;
+  text-align: center;
+  display: inline;
+  padding: 0 7px;
+}
+
+.parent .parent-dragable .input-file {
+  display: none;
+}
+
+.selectionInfo {
+  color: #FFFFFF;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.btn-parent {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+#cut {
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  background-color: #282a3b;
+  border-radius: 5px;
+  padding: 7px 18px;
+  min-width: 75px;
+  line-height: 1.7;
+  font-weight: 700;
+  -webkit-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+
+#cut:hover, #cut:active, #cut:focus {
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
+  background-color: #191b29;
+}
+
+#cut:hover {
+  background-color: #121420;
+}
+/*# sourceMappingURL=style.css.map */

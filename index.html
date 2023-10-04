@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Audio Cutter</title>
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+    </head>
+    <body>
+        <div class="arm-player-wave">
+            <div class="parent">
+                <div class="parent-dragable">
+                    <label for="addFile" class="input-label" data-content="Choose a File" multiple="true">
+                        <p class="drag-title">Drag and Drop</p>
+                        Just drop your file here
+                    </label>
+                    <input type="file" id="addFile" class="input-file" multiple="false" accept="audio/*" />
+                </div>
+            </div>
+            <div class="parent-wave">
+                <div class="waveform"></div>
+            </div>
+            <div class="selectionInfo">Selected Range: Start 0s - End 0s</div>
+            <div class="btn-parent">
+                <button type="button" id="cut">Cut</button>
+            </div>
+        </div>
+        <script src="./js/audio-cutter.min.js"></script>
+        <script src="./js/draganddropchunkupload.min.js"></script>
+        <script src="./js/script.js"></script>
+    </body>
+</html>
