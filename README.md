@@ -18,7 +18,7 @@
         waveColor: '#FFAA00',
         backgroundMask: 'rgba(232,109,109,0.42)',
         playAfterCut: false,
-        isDownload: false,
+        isDownload: true,
         name: 'download.wav',
         callBack: (start, end) => {
             startTime = start;
