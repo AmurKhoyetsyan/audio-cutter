@@ -51,13 +51,16 @@
     AudioCutter.fullData = {}
 
     /**
+     * @param audio
      * @returns {Promise<unknown>}
      */
-    AudioCutter.loadAudio = async function () {
+    AudioCutter.loadAudio = async function (audio = null) {
         let _self = this;
 
+        audio = audio === null ? _self.fullData.audio : audio;
+
         return new Promise((resolve, reject) => {
-            fetch(_self.fullData.audio)
+            fetch(audio)
                 .then(response => response.arrayBuffer())
                 .then(data => _self.fullData.audioContext.decodeAudioData(data))
                 .then(audioBuffer => {
