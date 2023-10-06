@@ -41,7 +41,8 @@
             callBack: null,
             playAfterCut: false,
             isDownload: false,
-            name: 'cut_audio.wav'
+            name: 'cut_audio.wav',
+            removeContent: false
         }
     }
 
@@ -202,7 +203,7 @@
      * @param end
      * @returns {AudioBuffer}
      */
-    function cutAudio(inputBuffer, start, end) {
+    function cutAudioRemoveStartEnd(inputBuffer, start, end) {
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
         const channels = inputBuffer.numberOfChannels;
         const frameCount = Math.floor((end - start) * inputBuffer.sampleRate);
@@ -218,6 +219,32 @@
         }
 
         return outputBuffer;
+    };
+
+    /**
+     * @param inputBuffer
+     * @param start
+     * @param end
+     * @returns {AudioBuffer}
+     */
+    function cutAudioRemoveContent(inputBuffer, start, end) {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        const sampleRate = inputBuffer.sampleRate;
+        const startSample = Math.floor(start * sampleRate);
+        const endSample = Math.floor(end * sampleRate);
+
+        const startSegment = inputBuffer.getChannelData(0).slice(0, startSample);
+        const endSegment = inputBuffer.getChannelData(0).slice(endSample);
+
+        const concatenatedData = new Float32Array(startSegment.length + endSegment.length);
+        concatenatedData.set(startSegment, 0);
+        concatenatedData.set(endSegment, startSegment.length);
+
+        const concatenatedBuffer = audioContext.createBuffer(1, concatenatedData.length, sampleRate);
+        concatenatedBuffer.getChannelData(0).set(concatenatedData);
+
+        return concatenatedBuffer;
     };
 
     /**
@@ -287,19 +314,15 @@
      * @param start
      * @param end
      */
-    AudioCutter.cut = function (file = null, start = null, end = null) {
+    AudioCutter.cut = function (file = null, start = null, end = null, removeContent = null) {
         let _self = this;
-        if (file === null) {
-            file = _self.fullData.audio;
-        }
+        file = file === null ? _self.fullData.audio : file;
 
-        if (start === null) {
-            start = _self.fullData.startX;
-        }
+        start = start === null ? _self.fullData.startX : start;
 
-        if (end === null) {
-            end = _self.fullData.endX;
-        }
+        end = end === null ? _self.fullData.endX : end;
+
+        removeContent = removeContent === null ? removeContent = _self.defaultData.option.removeContent : removeContent;
 
         return new Promise((resolve, reject) => {
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -307,7 +330,7 @@
 
             reader.onload = function (e) {
                 audioContext.decodeAudioData(e.target.result, function (buffer) {
-                    const outputBuffer = cutAudio(buffer, start, end);
+                    const outputBuffer = removeContent ? cutAudioRemoveContent(buffer, start, end) : cutAudioRemoveStartEnd(buffer, start, end);
 
                     const source = audioContext.createBufferSource();
                     source.buffer = outputBuffer;
