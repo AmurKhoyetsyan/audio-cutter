@@ -20,6 +20,7 @@
         playAfterCut: false,
         isDownload: true,
         name: 'download.wav',
+        removeContent: true,
         callBack: (start, end) => {
             startTime = start;
             endTime = end;
