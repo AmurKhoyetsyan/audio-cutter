@@ -26,7 +26,8 @@
             width: 460,
             height: 50,
             callback: null,
-            lineWidth: 10
+            lineWidth: 10,
+            lineOffset: 0.2
         }
     };
 
@@ -107,11 +108,11 @@
          * @param y1
          * @param x2
          * @param y2
-         * @param width
          */
         function drawBar(x1, y1, x2, y2) {
             _self.fullData.ctx.fillStyle = _self.fullData.option.color;
-            _self.fullData.ctx.fillRect(x1 + 0.2, _self.fullData.canvas.height - y1 / 2, _self.fullData.option.lineWidth - 0.2, y1 / 2);
+            let endY = (_self.fullData.option.lineWidth / 1.2) > y1 ? (_self.fullData.option.lineWidth / 1.2) : y1;
+            _self.fullData.ctx.fillRect(x1, y2, _self.fullData.option.lineWidth - _self.fullData.option.lineOffset, -y1 / 4);
         }
 
         if (_self.fullData.parent !== null) {
