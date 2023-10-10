@@ -4,10 +4,6 @@
  *
  * The MIT License (MIT)
  *
- * When we bring the file closer to the installation area
- * a new class is added to the installation section called "dragover",
- * with which we can shape the installation area․
- *
  ************************************************************************/
 
 ;(function () {
@@ -42,14 +38,16 @@
             playAfterCut: false,
             isDownload: false,
             name: 'cut_audio.wav',
-            removeContent: false
+            removeContent: false,
+            ekvalayzer: null,
+            lineWidth: 2
         }
-    }
+    };
 
     /**
      * @type {{}}
      */
-    AudioCutter.fullData = {}
+    AudioCutter.fullData = {};
 
     /**
      * @param audio
@@ -167,10 +165,12 @@
         const step = Math.ceil(channelData.length / this.fullData.canvas.width);
         const amp = this.fullData.canvas.height / 2;
 
-        for (let i = 0; i < this.fullData.canvas.width; i++) {
+        let percent = this.fullData.option.lineWidth <= 2 ? 0.2 : this.fullData.option.lineWidth / 10;
+
+        for (let i = 0; i < this.fullData.canvas.width; i += this.fullData.option.lineWidth) {
             const min = Math.min.apply(null, channelData.subarray(i * step, (i + 1) * step));
             const max = Math.max.apply(null, channelData.subarray(i * step, (i + 1) * step));
-            this.fullData.ctx.fillRect(i, (1 + min) * amp, 1, Math.max(1, (max - min) * amp));
+            this.fullData.ctx.fillRect(i, (1 + min) * amp, this.fullData.option.lineWidth - percent, Math.max(1, (max - min) * amp));
         }
 
         this.fullData.rect = this.fullData.canvas.getBoundingClientRect();
@@ -385,10 +385,11 @@
      * @param audio
      * @param option
      */
-    AudioCutter.run = function (parent, audio, option = {
+    AudioCutter.run = function (parent = null, audio = null, option = {
         waveColor: null,
         backgroundMask: null,
-        callBack: null
+        callBack: null,
+        ekvalayzer: null
     }) {
 
         this.reset();
@@ -403,9 +404,17 @@
             }
         }
 
-        if (parent !== null) {
+        if (parent !== null && audio !== null) {
             this.createWavForm();
-            this.createMask()
+            this.createMask();
+
+            if (this.fullData.option.ekvalayzer !== null) {
+                EkvalayzerGraphic.run(this.fullData.option.ekvalayzer, audio, {
+                    callBack: (player) => {
+                        player.play();
+                    }
+                });
+            }
         }
     };
 

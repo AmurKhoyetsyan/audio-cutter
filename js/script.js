@@ -20,6 +20,8 @@ function audioCuterLoad (audio) {
         isDownload: true,
         name: 'download.wav',
         removeContent: true,
+        lineWidth: 3,
+        ekvalayzer: document.querySelector('.ekvalayzer-graphic'),
         callBack: (start, end) => {
             startTime = start;
             endTime = end;
